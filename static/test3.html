@@ -1,0 +1,108 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">
+#rectBox
+{
+	background:#CCFFFF;
+	border:2px solid #0099FF;
+	filter:alpha(opacity=30);
+	opacity:0.3;
+	position:absolute;
+}
+</style>
+<head>
+	<title>一个鼠标选择框</title>
+	<script type="text/javascript">
+		function Rect()
+		{
+			this.doc = document.documentElement;
+			if(!this.doc) return;
+			this.startX = '';
+			this.startY = '';
+			this.rect = null;
+			rectSelf = this;
+		}
+		Rect.prototype.down = function(e)
+		{
+			var e = e?e:window.event;
+			rectSelf.startX = e.clientX?e.clientX + document.body.scrollLeft:e.pageX;
+			rectSelf.startY = e.clientY?e.clientY + document.body.scrollTop:e.pageY;
+			rectSelf.showRect(true);
+		}
+		Rect.prototype.up = function(e)
+		{
+			rectSelf.rectBox.style.width = '0px';
+			rectSelf.rectBox.style.height = '0px';
+			rectSelf.showRect(false);
+		}
+		Rect.prototype.move = function(e)
+		{
+			if(rectSelf.rectBox)
+			{
+				var currentX = e.clientX?e.clientX + rectSelf.doc.scrollLeft:e.pageX;
+				var currentY = e.clientY?e.clientY + rectSelf.doc.scrollTop:e.pageY;
+				rectSelf.rectBox.style.width = Math.abs(currentX - rectSelf.startX) + 'px';
+				rectSelf.rectBox.style.height = Math.abs(currentY - rectSelf.startY) + 'px';
+				if(currentX - rectSelf.startX < 0)
+				{
+					rectSelf.rectBox.style.left = currentX + 'px';
+				}
+				if(currentY - rectSelf.startY < 0)
+				{
+					rectSelf.rectBox.style.top = currentY + 'px';
+				}
+//document.title = "left:"+currentX + 'px '+"top:"+currentY + 'px ';
+}
+}
+Rect.prototype.showRect = function(bool) {
+	if(bool) {
+		if(!this.rectBox) {
+			this.rectBox = document.createElement("div");
+			this.rectBox.id = "rectBox";
+			document.body.appendChild(this.rectBox);
+		}
+		this.rectBox.style.display = "block";
+		this.rectBox.style.left = this.startX + 'px';
+		this.rectBox.style.top = this.startY + 'px';
+		this.addEventListener(this.doc , 'mousemove' , this.move);
+	} else {
+		if(this.rectBox) {
+			this.rectBox.style.display = "none";
+		}
+		this.removeEventListener(this.doc , 'mousemove' , this.move);
+	}
+}
+Rect.prototype.addEventListener = function(o,e,l)
+{
+	if (o.addEventListener) {
+		o.addEventListener(e,l,false);
+	} else if (o.attachEvent) {
+		o.attachEvent('on'+e,function() {
+			l(window.event);
+		});
+	}
+}
+Rect.prototype.removeEventListener = function(o,e,l)
+{
+	if (o.removeEventListener) {
+		o.removeEventListener(e,l,false);
+	} else if (o.detachEvent) {
+		o.detachEvent('on'+e,function() {
+			l(window.event);
+		});
+	}
+}
+window.onload = function()
+{
+	var oRect = new Rect();
+	oRect.addEventListener(oRect.doc , 'mousedown' , oRect.down);
+	oRect.addEventListener(oRect.doc , 'mouseup' , oRect.up);
+}
+</script>
+</head>
+<body>
+	<h1>拖动你的鼠标就会出现选择框</h1>
+</body>
+</html>
