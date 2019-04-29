@@ -16,6 +16,7 @@ II. Making a database
 3. Besides the VCF files, you need to create a chromosome length file for each project. It is a 2 columns, tab-delimited file with the first column contains names of all chromosomes and the second column contains lengths of them. The chromosome names in chromsome length file MUST BE IDENTICAL to chromosome names in VCF file(s)
 
 4. Now you have a chromosome length file and one or several VCF files in your project folder. For example:
+
 ~/ibrowser2/data/project1/chrom_len (This is the chromosome length file)
 
 ~/ibrowser2/data/project1/a1.vcf
@@ -25,8 +26,11 @@ II. Making a database
 ~/ibrowser2/data/project1/a2.vcf.gz
 
 5. Enter the ibrowser2 folder:
+
 cd ~/ibrowser2
-Then run this command:
+
+6. Then run this command:
+
 preprocess.py --bigWig data/project1/ data/project1/chrom_len
 
 III. Running (Visualization)
