@@ -3,6 +3,8 @@
 A new tool to visualize SNPs and introgressions. 
 Inspired by the Introgression browser (iBrowser, https://github.com/sauloal/introgressionbrowser, high-throughput whole-genome SNP visualization doi: 10.1111/tpj.12800).
 
+This tool was tested with python 3.5.2 and Ubuntu 16.04
+
 I. Installation
 1. Install required python packages: Pandas, pysam, flask, pyBigWig and biopython.
 2. Add the lib folder to $PATH. Alternatively, you can install kentUtils and bedops and add them to $PATH.
