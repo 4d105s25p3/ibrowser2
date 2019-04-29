@@ -32,6 +32,7 @@ Then run this command:
 preprocess.py --bigWig data/project1/ data/project1/chrom_len
 
 III. Running (Visualization)
+
 Go to ibrowser2 folder:
 cd ~/ibrowser2
 and run the command:
