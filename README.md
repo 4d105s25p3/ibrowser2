@@ -36,10 +36,12 @@ cd ~/ibrowser2
 preprocess.py --bigWig data/project1/ data/project1/chrom_len
 
 III. Running (Visualization)
+1. Go to ibrowser2 folder:
 
-Go to ibrowser2 folder:
 cd ~/ibrowser2
-and run the command:
+
+2. Run this command to start the program:
+
 app.py
 
-By default it is running in 0.0.0.0:50000. Open a browser and enter the address to go to ibrowser2's web page.
+3. By default it is running in 0.0.0.0:50000. Open a browser and enter the address to go to ibrowser2's web page.
