@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Main Page</title>
+		<script type="text/javascript" src="./d3.js"></script>
+		<script type="text/javascript" src="./jquery-3.3.1.js"></script>
+		<script type="text/javascript" src="./jsphylosvg-1.55/raphael-min.js"></script>
+        <script type="text/javascript" src="./jsphylosvg-1.55/jsphylosvg-min.js"></script>
+        <script type="application/javascript" src="./jquery-ui-1.12.1/jquery-ui.min.js"></script>
+
+		<style type="text/css">
+
+			svg { vertical-align: top }
+
+			.container {
+				margin: 0px;
+				padding: 0px;
+			}
+
+			nav div {
+				width: 100%;
+			}
+
+			nav select {
+				width: 100%;
+			}
+
+			nav select.multi {
+				height: 300px;
+			}
+
+			#nBins {
+				width: 100px;
+				display: inline;
+			}
+
+			#reset {
+				background-color: grey;
+				padding: 8px;
+				margin-left: 50px;
+				display: inline;
+				width: 150px;
+			}
+
+			a.input.element {
+				color: white;
+				background-color: black;
+			}
+
+			.output .chart {
+				margin: 0px;
+			}
+
+			#rectBox {
+				background:#CCFFFF;
+				border:2px solid #0099FF;
+				filter:alpha(opacity=30);
+				opacity:0.3;
+				position:absolute;
+			}
+
+			.reference-selection {
+				display: none;
+			}
+
+			.accessions-text {
+				display: block;
+				font-size: 30px;
+			}
+
+			.legands.position {
+				display: inline-block;
+				height: 20px;
+				width: 150px;
+			}
+
+			.legands.colorScale {
+				display: inline-block;
+				height: 20px;
+				width: 200px;
+			}
+
+			rect.colorScale.block {
+				height: 20px;
+				width: 20px;
+			}
+
+		</style>
+	</head>
+	<body style="margin: 0px;">
+		<nav class="menu" style="
+			position: fixed;
+			width: 300px;
+			height: 100%;
+			z-index: 999;
+			background-color: white;
+		">
+			<select class="menu project-selection">
+				<option value=""> Please Select a Project </option>
+			</select>
+			
+			<select class="menu chromosome-selection">
+				<option value=""> Please Select a Chromosome </option>
+			</select>
+
+
+			<select class="menu mode-selection">
+				<option class="mode" value="single"> Single-reference Mode </option>
+				<option class="mode" value="double"> Two-reference Mode </option>
+				<option class="mode" value="multi"> Multi-reference Mode </option>
+			</select>
+
+			<div class="menu" id="reference-selection">
+				<select class="reference-selection" id="single">
+					<option value=""> Please Select a Reference </option>
+				</select>
+				<div class="reference-selection" id="double">
+					<select class="double" id="first">
+						<option value=""> Please Select First Reference </option> 
+					</select>
+					<select class="double" id="second"> 
+						<option value=""> Please Select Second Reference </option>
+					</select>
+				</div>
+				<select class="reference-selection multi" id="multi" multiple="multiple"></select>
+			</div>
+
+			<div class="menu parameter-selection">
+				<input class="menu parameter-selection" id="start">
+				<input class="menu parameter-selection" id="end">
+				<input class="menu parameter-selection" id="nbins">
+				<div class="parameter-selection buttons">
+					<button class="parameter-selection zooming" id="zoom-in">Zoom In</button>
+					<button class="parameter-selection zooming" id="zoom-out">Zoom Out</button>
+				</div>
+				
+			</div>
+
+
+			<div class="menu sample-selection">
+				<select class="menu sample-selection multi" multiple="multiple"></select>
+			</div>
+
+			<button class="menu" id="reset"> Reset </button>
+			<button class="menu" id="confirm"> Confirm </button>
+
+			<div id="tree-render"></div>
+		</nav>
+		<div class="board">
+			<div class="legands" style="
+				position: fixed;
+				height: 80px;
+				width: 100%;
+				left: 300px;
+				z-index: 999;
+				background-color: white;
+			">
+				<div class="legands container" id="position">
+					<div class="legands position" id="start"></div>
+					<div class="legands position" id="end"></div>
+					<div class="legands position" id="distance"></div>
+				</div>
+				<div class="legands container" id="selectedCol">
+					<div class="legands selectedCol" id="information"></div>
+					<button class="legands selectedCol" id="draw-tree" style="visibility: hidden;">Draw Tree</button>
+				</div>
+				<div class="legands container" id="colorScale">
+					<svg class="legands colorScale" id="bar"></svg>
+					<div class="legands colorScale" id="text"></div>
+				</div>
+
+			</div>
+
+			<div class="accessions container" style="
+				position: absolute;
+				height: 100%;
+				width:100px;
+				left: 300px;
+				top: 80px;
+			"></div>
+			<div class="header container" style="
+				position: absolute;
+				height: 20px;
+				width: 100%;
+				left: 400px;
+				top: 80px;
+			"></div>
+			<div class="output container" style="
+				position: absolute;
+				width: 100%;
+				left: 400px;
+				top: 100px;
+			">
+				<div id="rectBox" style="display: none;"></div>
+				<div id="toolTip" style="position: absolute; visibility: hidden;"></div>
+				<div id="highLight" style="
+					position: absolute;
+					visibility: hidden;
+					background-color: white;
+					opacity: 0.5;
+					border: 1px solid;
+					z-index: 998;
+				"></div>
+				<div class="refSeq container"></div>
+				<div class="annotation container"></div>
+			</div>
+		</div>
+		<div id="tree-panel"></div>
+		<script type="text/javascript" src="./main_new_2.js"></script>
+	</body>
+</html>

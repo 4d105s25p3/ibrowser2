@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Main Page</title>
+		<script type="text/javascript" src="./d3.js"></script>
+		<script type="text/javascript" src="./jquery-3.3.1.js"></script>
+		<style type="text/css">
+
+			svg { vertical-align: top }
+
+			.container {
+				margin: 0px;
+				padding: 0px;
+			}
+
+			.element {
+				width: 294px;
+				height: 30px;
+				font: 20px sans-serif;
+				padding: 3px;
+				margin-left: 0px;
+				margin-right: 0px;
+				margin-top: 1px;
+				margin-bottom: 1px;
+				display: block;
+			}
+
+			.project .element {
+				color: white;
+				background-color: steelblue;
+			}
+
+			.chromosome .element {
+				color: white;
+				background-color: orange;
+			}
+
+			.ref .element {
+				color: white;
+				background-color: green;
+			}
+
+			div.sample.element {
+				display: inline-table;
+				color: white;
+				background-color: grey;
+				width: 56px;
+				height: 18px;
+				padding: 1px;
+				margin: 1px;
+			}
+
+			.sample.element.clicked {
+				background-color: darkgrey;
+			}
+
+			#nBins {
+				width: 100px;
+				display: inline;
+			}
+
+			#reset {
+				background-color: grey;
+				padding: 8px;
+				margin-left: 50px;
+				display: inline;
+				width: 150px;
+			}
+
+			a.input.element {
+				color: white;
+				background-color: black;
+			}
+
+			.output .chart {
+				margin: 0px;
+			}
+
+			#rectBox {
+				background:#CCFFFF;
+				border:2px solid #0099FF;
+				filter:alpha(opacity=30);
+				opacity:0.3;
+				position:absolute;
+			}
+
+		</style>
+	</head>
+	<body style="margin: 0px;">
+		<nav class="menu" style="
+			position: absolute;
+			width: 300px;
+		">
+			<div class="project container"></div>
+			<div class="input container"></div>
+		</nav>
+		<div class="board">
+			<div class="legands" style="
+				position: absolute;
+				height: 100px;
+				width: 100%;
+				left: 300px;
+			"></div>
+			<div class="accessions" style="
+				position: absolute;
+				height: 100%;
+				width:100px;
+				left: 300px;
+				top: 100px;
+			"></div>
+			<div class="output container" style="
+				position: absolute;
+				width: 100%;
+				left: 400px;
+				top: 100px;
+			">
+				<div id="rectBox" style="display: none;"></div>
+				<div id="toolTip" style="position: absolute; visibility: hidden;"></div>
+				<div class="refSeq container"></div>
+				<div class="annotation container"></div>
+			</div>
+		</div>
+		
+		<script type="text/javascript" src="./main.js"></script>
+	</body>
+</html>
